@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
-import SearchBar from '../containers/searchBar';
-import PokemonView from '../containers/pokemonView';
+import SearchBar from '../containers/SearchBar';
+import PokemonView from '../containers/PokemonView';
 import pokemon_logo from '../img/pokemon_logo.png';
 
 class App extends Component {

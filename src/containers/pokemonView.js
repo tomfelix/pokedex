@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class PokemonView extends Component {
   render() {
     return (
       <div>
-        Info about specific Pokemon
+        {console.log(this.props.pokemon)}
       </div>
     )
   }
 }
 
-export default PokemonView;
+function mapStateToProps(state) {
+  return {
+    pokemon: state.pokemon
+  }
+}
+
+export default connect(mapStateToProps)(PokemonView);

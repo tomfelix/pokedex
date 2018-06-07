@@ -22,7 +22,10 @@ class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.getPokemonByName('pikachu');
+    this.props.getPokemonByName(this.state.term);
+    this.setState({
+      term: ''
+    });
   }
 
   render() {
@@ -40,6 +43,7 @@ class SearchBar extends Component {
     )
   }
 }
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getPokemonByName }, dispatch);

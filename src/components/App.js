@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img className="logo" src={pokemon_logo} alt="pokemon logo" height="100" width="300"/>
+          <img className="logo" src={pokemon_logo} alt="pokemon logo" height="150" width="400"/>
           <SearchBar />
         </header>
         <PokemonView />

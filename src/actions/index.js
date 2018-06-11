@@ -8,11 +8,12 @@ export default function getPokemonByName(name) {
 
   const request = axios.get(url)
     .then(response => {
+      console.log(response.status);
       return response.data;
     })
     .catch(error => {
-      console.log(error);
-      return error;
+      console.log(error.response.status);
+      return error.response.status;
     });
 
   return {

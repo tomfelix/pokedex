@@ -11,6 +11,7 @@ export default function getPokemonByName(name) {
       return response.data;
     })
     .catch(error => {
+      console.log(error);
       return error;
     });
 

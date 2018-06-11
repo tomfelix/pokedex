@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class PokemonView extends Component {
+
   renderPokemon(element) {
     return (
       <tr>
         <td><img src={element.sprites.front_default} className="image" alt="{element.name}-image"/></td>
-        <td>Name: {element.name}</td>
-        <td>Type: {element.types[0].type.name}</td>
+        <td>{element.name}</td>
+        <td>{element.types[0].type.name}</td>
+        <td>{element.weight}</td>
       </tr>
     )
   }
@@ -17,7 +19,10 @@ class PokemonView extends Component {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th>Pokemon</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Weight</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +32,7 @@ class PokemonView extends Component {
     )
   }
 }
+
 
 function mapStateToProps(state) {
   return {

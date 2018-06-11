@@ -31,7 +31,7 @@ class PokemonView extends Component {
   render() {
     if(this.props.pokemon[0] === 404) {
       return (
-        <div>Nie ma takiego Pokemona!</div>
+        <div>Try with another name!</div>
       )
     }
     return (

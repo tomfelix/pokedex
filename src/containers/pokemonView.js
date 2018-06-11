@@ -5,8 +5,8 @@ class PokemonView extends Component {
 
   renderPokemon(element) {
     return (
-      <tr>
-        <td><img src={element.sprites.front_default} className="image" alt="{element.name}-image"/></td>
+      <tr key={element.name}>
+        <td><img src={element.sprites.front_default} className="image" alt={element.name} /></td>
         <td>{element.name}</td>
         <td>{element.types[0].type.name}</td>
         <td>{element.weight}</td>

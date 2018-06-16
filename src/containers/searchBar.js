@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import '../styles/searchBar.css';
-import getPokemonByName from '../actions/index';
+import { getPokemonByName, getAllPokemons } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -22,9 +22,10 @@ class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if(this.state.term.length > 0) {
-      this.props.getPokemonByName(this.state.term.toLowerCase());
-    }
+    //this.props.getAllPokemons();
+    //if(this.state.term.length > 0) {
+    //  this.props.getPokemonByName(this.state.term.toLowerCase());
+    //}
     this.setState({
       term: ''
     });
@@ -37,7 +38,7 @@ class SearchBar extends Component {
           className="form-control"
           value={this.state.term}
           onChange={this.handleChange}
-          placeholder="Put Pokemon name..."/>
+          placeholder="Put Pokemon name or ID..."/>
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Search</button>
         </span>
@@ -48,7 +49,7 @@ class SearchBar extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getPokemonByName }, dispatch);
+  return bindActionCreators({ getPokemonByName, getAllPokemons }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

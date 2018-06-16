@@ -1,52 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Pokemon from '../components/Pokemon';
+import pokemonView from '../styles/pokemonView.css';
+import { bindActionCreators } from 'redux';
+import { getAllPokemons } from '../actions/index';
 
 class PokemonView extends Component {
 
-  renderPokemon(element) {
-    return (
-      <div key={element.name}>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src={element.sprites.front_default} className="image" alt={element.name} /></td>
-              <td>{element.name}</td>
-              <td>{element.types[0].type.name}</td>
-              <td>{element.weight}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    )
+  componentDidMount() {
+    this.props.getAllPokemons();
   }
 
   render() {
-    if(this.props.pokemon[0] === 404) {
-      return (
-        <div>Try with another name!</div>
-      )
-    }
     return (
-      <div>
-        {this.props.pokemon.map(this.renderPokemon)}
-      </div>
+      <section className="pokemon-list">
+        {this.props.pokemons.map((pokemon, id) => {
+          id++;
+          return (
+            <Pokemon key={id} name={pokemon.name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}/>
+          )
+        })}
+      </section>
     )
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getAllPokemons }, dispatch);
+}
 
-function mapStateToProps(state) {
+function mapStateToProps({ pokemons, pokemon }) {
   return {
-    pokemon: state.pokemon
+    pokemons,
+    pokemon
   };
 }
 
-export default connect(mapStateToProps)(PokemonView);
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonView);

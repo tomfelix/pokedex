@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import '../styles/searchBar.css';
 import { getPokemonByName, getAllPokemons, getFilteredPokemon } from '../actions/index';
+import PokemonView from './PokemonView';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -30,16 +32,19 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="input-group text-center">
-        <input
-          className="form-control"
-          value={this.state.term}
-          onChange={this.handleChange}
-          placeholder="Put Pokemon name or ID..."/>
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>
-        </span>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit} className="input-group text-center">
+          <input
+            className="form-control"
+            value={this.state.term}
+            onChange={this.handleChange}
+            placeholder="Put Pokemon name or ID..."/>
+          <span className="input-group-btn">
+            <button type="submit" className="btn btn-secondary">Search</button>
+          </span>
+        </form>
+        <PokemonView />
+      </div>
     )
   }
 }
@@ -49,4 +54,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getPokemonByName, getAllPokemons, getFilteredPokemon }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default withRouter(connect(null, mapDispatchToProps)(SearchBar));

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import Pokemon from '../containers/Pokemon';
 import '../styles/pokemonView.css';
 import { bindActionCreators } from 'redux';
@@ -52,4 +53,4 @@ function mapStateToProps({ pokemons, pokemon, filteredPokemon }) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonView);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PokemonView));

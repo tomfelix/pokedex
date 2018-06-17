@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Pokemon from '../components/Pokemon';
+import Pokemon from '../containers/Pokemon';
 import '../styles/pokemonView.css';
 import { bindActionCreators } from 'redux';
 import { getAllPokemons } from '../actions/index';

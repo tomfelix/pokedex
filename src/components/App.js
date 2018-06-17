@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import '../styles/App.css';
 import SearchBar from '../containers/SearchBar';
 import PokemonView from '../containers/PokemonView';

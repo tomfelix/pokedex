@@ -22,11 +22,7 @@ class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.getFilteredPokemon(this.state.term);
-    //this.props.getAllPokemons();
-    //if(this.state.term.length > 0) {
-    //  this.props.getPokemonByName(this.state.term.toLowerCase());
-    //}
+    this.props.getFilteredPokemon(this.state.term.toLowerCase());
     this.setState({
       term: ''
     });

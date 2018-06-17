@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import '../styles/searchBar.css';
-import { getPokemonByName, getAllPokemons } from '../actions/index';
+import { getPokemonByName, getAllPokemons, getFilteredPokemon } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.getFilteredPokemon(this.state.term);
     //this.props.getAllPokemons();
     //if(this.state.term.length > 0) {
     //  this.props.getPokemonByName(this.state.term.toLowerCase());
@@ -49,7 +50,7 @@ class SearchBar extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getPokemonByName, getAllPokemons }, dispatch);
+  return bindActionCreators({ getPokemonByName, getAllPokemons, getFilteredPokemon }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

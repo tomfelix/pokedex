@@ -1,5 +1,5 @@
 import React from 'react';
-import pokemon from '../styles/pokemon.css';
+import '../styles/pokemon.css';
 
 const Pokemon = ({ name, image }) => {
   return (
@@ -7,7 +7,7 @@ const Pokemon = ({ name, image }) => {
       <div>
         <img src={image} alt={name}/>
       </div>
-      <div>{name.charAt(0).toUpperCase() + name.slice(1)}</div>
+      <div className="pokemon-name">{name.charAt(0).toUpperCase() + name.slice(1)}</div>
     </button>
   )
 }

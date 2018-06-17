@@ -4,6 +4,7 @@ import axios from 'axios';
 const ROOT_URL = `http://pokeapi.salestock.net/api/v2/pokemon`;
 export const POKEMON_NAME = 'POKEMON_NAME';
 export const POKEMONS = 'POKEMONS';
+export const FILTERED_POKEMON = 'FILTERED_POKEMON';
 
 
 export function getAllPokemons() {
@@ -23,21 +24,19 @@ export function getAllPokemons() {
   }
 }
 
-export function getPokemonByName(name) {
-  const url = `${ROOT_URL}${name}`;
 
-  const request = axios.get(url)
-    .then(response => {
-      console.log(response.status);
-      return response.data;
-    })
-    .catch(error => {
-      console.log(error.response.status);
-      return error.response.status;
-    });
+export function getPokemonByName(name) {
 
   return {
     type: POKEMON_NAME,
-    payload: request
+    payload: name
+  }
+}
+
+
+export function getFilteredPokemon(name) {
+  return {
+    type: FILTERED_POKEMON,
+    payload: name
   }
 }

@@ -12,15 +12,30 @@ class PokemonView extends Component {
   }
 
   render() {
+    const { pokemons, filteredPokemon } = this.props;
+    if(filteredPokemon !== '') {
+      let poks = pokemons.filter(function(pokemon) {
+        return pokemon.name === filteredPokemon;
+      });
+      if(poks.length > 0) {
+        return (
+          <Pokemon key={poks[0].id} name={poks[0].name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poks[0].id}.png`}/>
+        )
+      }
+      return (
+        <p>Choose another Pokemon or look for nothing to see all of them ;)</p>
+      )
+    }
+
     return (
       <section className="pokemon-list">
-        {this.props.pokemons.map((pokemon, id) => {
-          id++;
+        {pokemons.map(pokemon => {
           return (
-            <Pokemon key={id} name={pokemon.name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}/>
+            <Pokemon key={pokemon.id} name={pokemon.name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
           )
         })}
       </section>
+
     )
   }
 }
@@ -29,10 +44,11 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getAllPokemons }, dispatch);
 }
 
-function mapStateToProps({ pokemons, pokemon }) {
+function mapStateToProps({ pokemons, pokemon, filteredPokemon }) {
   return {
     pokemons,
-    pokemon
+    pokemon,
+    filteredPokemon
   };
 }
 

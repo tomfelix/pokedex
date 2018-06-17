@@ -10,6 +10,7 @@
 
 .logo {
   padding-bottom: 10px;
+  max-width: 100%;
 }
 
 .App-title {

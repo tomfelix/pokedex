@@ -1,9 +1,18 @@
-
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  height: 100%;
   width: 100%;
+  padding: 10px;
   overflow: scroll;
+  font-size: 20px;
+}
+
+.pokemon-none {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 20px;
+  color: white;
 }

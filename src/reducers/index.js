@@ -7,7 +7,8 @@ import filteredPokemonReducer from './filtered_pokemon_reducer';
 const rootReducer = combineReducers({
   pokemon: PokemonReducer,
   pokemons: PokemonsReducer,
-  filteredPokemon: filteredPokemonReducer
+  filteredPokemon: filteredPokemonReducer,
+  isLoading: false
 });
 
 export default rootReducer;

@@ -25,6 +25,7 @@ class SearchBar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.getFilteredPokemon(this.state.term.toLowerCase());
+    this.props.getPokemonByName(1);
     this.setState({
       term: ''
     });
@@ -38,7 +39,7 @@ class SearchBar extends Component {
             className="form-control"
             value={this.state.term}
             onChange={this.handleChange}
-            placeholder="Put Pokemon name or ID..."/>
+            placeholder="Put Pokemon name here..."/>
           <span className="input-group-btn">
             <button type="submit" className="btn btn-secondary">Search</button>
           </span>

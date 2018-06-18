@@ -4,8 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 import './styles/index.css';
 import App from './components/App';
@@ -25,7 +24,7 @@ ReactDOM.render(
         <App />
         <Switch>
           <Route exact path="/" component={SearchBar}/>
-          <Route path="/pokemon" component={PokemonDetails}/>
+          <Route path="/:name" match="name" component={PokemonDetails}/>
         </Switch>
       </div>
     </BrowserRouter>

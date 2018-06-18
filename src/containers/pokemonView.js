@@ -20,11 +20,13 @@ class PokemonView extends Component {
       });
       if(poks.length > 0) {
         return (
-          <Pokemon key={poks[0].id} name={poks[0].name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poks[0].id}.png`}/>
+          <section className="pokemon-list">
+            <Pokemon id={poks[0].id} key={poks[0].id} name={poks[0].name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poks[0].id}.png`}/>
+          </section>
         )
       }
       return (
-        <p>Choose another Pokemon or look for nothing to see all of them ;)</p>
+        <p className="pokemon-none">Choose another Pokemon or look for nothing to see all of them ;)</p>
       )
     }
 
@@ -32,7 +34,7 @@ class PokemonView extends Component {
       <section className="pokemon-list">
         {pokemons.map(pokemon => {
           return (
-            <Pokemon key={pokemon.id} name={pokemon.name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
+            <Pokemon id={pokemon.id} key={pokemon.id} name={pokemon.name} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
           )
         })}
       </section>

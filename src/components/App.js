@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Link to="/" onClick={() => this.props.getFilteredPokemon('')}><img className="logo" src={pokemon_logo} alt="pokemon logo" height="150" width="400"/></Link>
+          <Link to="/" onClick={() => this.props.getFilteredPokemon('')}><img className="logo" src={pokemon_logo} alt="pokemon logo"/></Link>
         </header>
       </div>
     );

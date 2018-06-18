@@ -25,11 +25,19 @@ export function getAllPokemons() {
 }
 
 
-export function getPokemonByName(name) {
-
+export function getPokemonByName(id) {
+  const url = `${ROOT_URL}/${id}`;
+  const request = axios.get(url)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error.response.status);
+      return [];
+    });
   return {
     type: POKEMON_NAME,
-    payload: name
+    payload: request
   }
 }
 

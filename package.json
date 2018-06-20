@@ -16,13 +16,16 @@
     "redux-promise": "^0.6.0"
   },
   "devDependencies": {
+    "babel-jest": "^23.0.1",
     "gh-pages": "^1.2.0",
+    "jest": "^23.1.0",
     "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

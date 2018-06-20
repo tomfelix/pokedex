@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import Pokemon from '../containers/Pokemon';
+import Pokemon from './Pokemon';
 import '../styles/pokemonView.css';
 import { bindActionCreators } from 'redux';
-import { getAllPokemons } from '../actions/index';
+import { getAllPokemons, fetchingData } from '../actions/index';
+import loader from '../img/loader.gif';
+
 
 class PokemonView extends Component {
+  componentWillMount() {
+    this.props.fetchingData();
+  }
 
   componentDidMount() {
     this.props.getAllPokemons();
   }
 
   render() {
-    const { pokemons, filteredPokemon } = this.props;
+    const { pokemons } = this.props.pokemons;
+    const { filteredPokemon } = this.props;
+    if(this.props.pokemons.isLoading) {
+      return (
+        <div className="loader">
+          <img src={loader} alt="Loading"/>
+        </div>
+      )
+    }
+
     if(filteredPokemon !== '') {
       let poks = pokemons.filter(function(pokemon) {
         return pokemon.name === filteredPokemon;
@@ -44,14 +58,13 @@ class PokemonView extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getAllPokemons }, dispatch);
+  return bindActionCreators({ getAllPokemons, fetchingData }, dispatch);
 }
 
-function mapStateToProps({ pokemons, pokemon, filteredPokemon }) {
+function mapStateToProps(state) {
   return {
-    pokemons,
-    pokemon,
-    filteredPokemon
+    pokemons: state.pokemons,
+    filteredPokemon: state.filteredPokemon
   };
 }
 

@@ -1,50 +1,56 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import pokemon_logo from '../img/pokemon_logo.png';
 import '../styles/pokemonDetails.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
-import { getPokemonByName } from '../actions/index';
-
+import { getPokemonByName, fetchingData } from '../actions/index';
+import loader from '../img/loader.gif';
 
 class PokemonDetails extends Component {
+  componentWillMount() {
+    this.props.fetchingData();
+  }
+
   componentDidMount() {
     this.props.getPokemonByName(this.props.match.params.name);
   }
 
-  componentWillUnmount() {
-    this.props.getPokemonByName('x');
-  }
 
   render() {
-    console.log('huj:', this.props.pokemon);
-    const { pokemon } = this.props;
+    const { pokemon } = this.props.pokemon;
+
+    if(this.props.pokemon.isLoading) {
+      return (
+        <div className="loader">
+          <img src={loader} alt="Loading"/>
+        </div>
+      )
+    }
+
     return (
       <div className="pokemon-details">
         <img alt={pokemon.name} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}/>
         <div className="pokemon-info">
           <div>Name: {pokemon.name}</div>
-          <div>Weight: {pokemon.weight}</div>
-          <div>Height: {pokemon.height}</div>
-          <div>Type: type</div>
-          <div>Experience: {pokemon.base_experience}</div>
-
+          <div>Weight: {pokemon.weight} g</div>
+          <div>Height: {pokemon.height} cm</div>
+          <div>Experience: {pokemon.base_experience} XP</div>
         </div>
       </div>
     )
   }
+
 }
 
 
-function mapStateToProps({ pokemon }) {
+const mapStateToProps = state => {
   return {
-    pokemon
+    pokemon: state.pokemon
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getPokemonByName }, dispatch);
+  return bindActionCreators({ getPokemonByName, fetchingData }, dispatch);
 }
 
 

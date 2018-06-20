@@ -1,10 +1,7 @@
 import React from 'react';
 import '../styles/pokemon.css';
 import {Link} from 'react-router-dom';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { bindActionCreators } from 'redux';
-import { getPokemonByName } from '../actions/index';
 
 const Pokemon = ({ name, image, id }) => {
   return (
@@ -17,9 +14,6 @@ const Pokemon = ({ name, image, id }) => {
   )
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getPokemonByName }, dispatch);
-}
 
 
-export default withRouter(connect(null, mapDispatchToProps)(Pokemon));
+export default withRouter(Pokemon);

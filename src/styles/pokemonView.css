@@ -16,3 +16,8 @@
   font-size: 20px;
   color: white;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+}

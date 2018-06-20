@@ -5,6 +5,7 @@ const ROOT_URL = `http://pokeapi.salestock.net/api/v2/pokemon`;
 export const POKEMON_NAME = 'POKEMON_NAME';
 export const POKEMONS = 'POKEMONS';
 export const FILTERED_POKEMON = 'FILTERED_POKEMON';
+export const FETCHING_DATA = 'FETCHING_DATA';
 
 
 export function getAllPokemons() {
@@ -24,16 +25,20 @@ export function getAllPokemons() {
   }
 }
 
+export function fetchingData() {
+  return {
+    type: FETCHING_DATA
+  }
+}
 
-export function getPokemonByName(id) {
-  const url = `${ROOT_URL}/${id}`;
+export function getPokemonByName(name) {
+  const url = `${ROOT_URL}/${name}/`;
   const request = axios.get(url)
     .then(response => {
       return response.data;
     })
     .catch(error => {
-      console.log(error.response.status);
-      return [];
+      return error;
     });
   return {
     type: POKEMON_NAME,
@@ -42,9 +47,9 @@ export function getPokemonByName(id) {
 }
 
 
-export function getFilteredPokemon(name) {
+export function getFilteredPokemon(filteredName) {
   return {
     type: FILTERED_POKEMON,
-    payload: name
+    payload: filteredName
   }
 }
